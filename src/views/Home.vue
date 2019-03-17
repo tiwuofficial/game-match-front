@@ -1,5 +1,4 @@
 <template>
-  <section>
     <v-container
             fluid
             grid-list-md
@@ -27,9 +26,8 @@
             </v-card>
           </v-flex>
         </v-layout>
-      </v-container>
     <BottomNav></BottomNav>
-  </section>
+    </v-container>
 </template>
 
 <script lang="ts">
@@ -42,7 +40,7 @@
         },
     })
     export default class Home extends Vue {
-      private cards:array = [
+      private cards:object[] = [
         { id: 1, title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 12 },
         { id: 2,title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
         { id: 3,title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 },

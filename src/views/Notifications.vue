@@ -1,8 +1,11 @@
 <template>
-  <section>
+  <v-container
+          fluid
+          grid-list-md
+  >
     <h1>Notifications</h1>
     <BottomNav></BottomNav>
-  </section>
+  </v-container>
 </template>
 
 <script lang="ts">

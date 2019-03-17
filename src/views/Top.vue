@@ -1,5 +1,8 @@
 <template>
-  <section>
+  <v-container
+          fluid
+          grid-list-md
+  >
     <h1>Login</h1>
     <v-form>
       <v-text-field
@@ -17,7 +20,7 @@
       <v-btn @click="submit">Login</v-btn>
     </v-form>
     <router-link to="/register">Register</router-link>
-  </section>
+  </v-container>
 </template>
 
 <script lang="ts">

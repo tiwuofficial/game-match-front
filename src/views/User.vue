@@ -1,13 +1,11 @@
 <template>
-  <section>
-    <v-container
-            fluid
-            grid-list-md
-    >
+  <v-container
+          fluid
+          grid-list-md
+  >
     <h1>User</h1>
-    </v-container>
     <BottomNav></BottomNav>
-  </section>
+  </v-container>
 </template>
 
 <script lang="ts">
