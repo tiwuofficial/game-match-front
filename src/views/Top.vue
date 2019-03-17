@@ -6,9 +6,9 @@
     <h1>Login</h1>
     <v-form>
       <v-text-field
-        v-model="email"
-        label="E-mail"
-        type="email"
+        v-model="id"
+        label="ID"
+        type="text"
         required
       ></v-text-field>
       <v-text-field
@@ -28,11 +28,23 @@
 
     @Component
     export default class Top extends Vue {
-      private email: string = '';
+      private id: string = '';
       private password: string = '';
       private submit() {
-        // api叩いてログインできれば遷移
-        this.$router.push('home');
+        const formData = new FormData();
+        formData.append('id', this.id);
+        formData.append('password', this.password);
+        fetch('http://localhost:8080/api/login', {
+            method: "POST",
+            body: formData,
+        }).then(response => response.json())
+          .catch(error => console.error('Error:', error))
+          .then(response => {
+              if (response.access_token) {
+                localStorage.setItem('access_token', response.access_token);
+                this.$router.push('home');
+              }
+          });
       }
     }
 </script>

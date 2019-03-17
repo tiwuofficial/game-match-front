@@ -18,5 +18,6 @@
         },
     })
     export default class Friends extends Vue {
+        // TODO 友達削除
     }
 </script>

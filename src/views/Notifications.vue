@@ -18,5 +18,7 @@
         },
     })
     export default class Notifications extends Vue {
+        // TODO 友達許可
+        // TODO 友達拒否
     }
 </script>
