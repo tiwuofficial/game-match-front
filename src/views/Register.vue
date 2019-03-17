@@ -6,8 +6,8 @@
     <h1>Register</h1>
     <v-form>
       <v-text-field
-        v-model="id"
-        label="ID"
+        v-model="user_id"
+        label="User ID"
         required
       ></v-text-field>
       <v-text-field
@@ -33,16 +33,16 @@
 
     @Component
     export default class Top extends Vue {
-      private id: string = '';
+      private user_id: string = '';
       private password: string = '';
       private introduction:string = '';
       private submit() {
         // api叩いて登録できれば遷移
           const formData = new FormData();
-          formData.append('id', this.id);
+          formData.append('user_id', this.user_id);
           formData.append('password', this.password);
           formData.append('introduction', this.introduction);
-          fetch('http://localhost:8080/api/register', {
+          fetch(`${process.env.VUE_APP_BACK_ORIGIN}/api/register`, {
               method: "POST",
               body: formData,
           }).then(response => response.json())

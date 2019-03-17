@@ -3,7 +3,7 @@
           fluid
           grid-list-md
   >
-    <h1>{{user.id}}</h1>
+    <h1>{{user.user_id}}</h1>
     <p>{{user.introduction}}</p>
     <BottomNav></BottomNav>
   </v-container>
@@ -21,7 +21,8 @@
     export default class User extends Vue {
         private user:object = {};
         public created(){
-            fetch(`http://localhost:8080/api/users/${this.$route.params.id}`, {
+            console.log(process.env.VUE_APP_BACK_ORIGIN);
+            fetch(`${process.env.VUE_APP_BACK_ORIGIN}/api/users/${this.$route.params.id}`, {
                 mode: "cors",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem('access_token')}`,

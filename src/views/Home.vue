@@ -11,7 +11,7 @@
                   :key="card.id"
           >
             <v-card
-                    :to="`/user/${card.id}`"
+                    :to="`/user/${card.user_id}`"
             >
               <v-img
                       :src="card.src"
@@ -20,7 +20,7 @@
               </v-img>
               <v-card-title>
                 <div>
-                  <h3>{{card.id}}</h3>
+                  <h3>{{card.user_id}}</h3>
                 </div>
               </v-card-title>
             </v-card>
@@ -43,7 +43,8 @@
       private cards:object[] = [];
       // TODO 自分以外のユーザーを取得
       public created(){
-          fetch('http://localhost:8080/api/users', {
+          console.log(process.env.VUE_APP_BACK_ORIGIN);
+          fetch(`${process.env.VUE_APP_BACK_ORIGIN}/api/users`, {
               mode: "cors",
               headers: {
                   "Authorization": `Bearer ${localStorage.getItem('access_token')}`,

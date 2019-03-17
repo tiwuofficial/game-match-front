@@ -34,7 +34,7 @@
         const formData = new FormData();
         formData.append('id', this.id);
         formData.append('password', this.password);
-        fetch('http://localhost:8080/api/login', {
+        fetch(`${process.env.VUE_APP_BACK_ORIGIN}/api/login`, {
             method: "POST",
             body: formData,
         }).then(response => response.json())
