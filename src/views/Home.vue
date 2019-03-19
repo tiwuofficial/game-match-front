@@ -1,33 +1,35 @@
 <template>
-    <v-container
-            fluid
-            grid-list-md
-    >
-      <h1>Home</h1>
-        <v-layout row wrap>
-          <v-flex
-                  xs6
-                  v-for="card in cards"
-                  :key="card.id"
-          >
-            <v-card
-                    :to="`/user/${card.user_id}`"
-            >
-              <v-img
-                      :src="card.src"
-                      height="150px"
-              >
-              </v-img>
-              <v-card-title>
-                <div>
-                  <h3>{{card.user_id}}</h3>
-                </div>
-              </v-card-title>
-            </v-card>
-          </v-flex>
-        </v-layout>
+  <v-container
+    fluid
+    grid-list-md
+  >
+    <h1>Home</h1>
+    <div class="text-xs-center" v-if="wait">
+      <v-progress-circular
+        :size="50"
+        color="success"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+    <v-layout row wrap class="mb-5">
+      <v-flex
+        xs12
+        v-for="user in users"
+        :key="user.id"
+      >
+        <v-card
+          :to="`/user/${user.user_id}`"
+        >
+          <v-card-title>
+            <div>
+              <h3>{{user.user_id}}</h3>
+            </div>
+          </v-card-title>
+        </v-card>
+      </v-flex>
+    </v-layout>
     <BottomNav></BottomNav>
-    </v-container>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -40,10 +42,9 @@
         },
     })
     export default class Home extends Vue {
-      private cards:object[] = [];
-      // TODO 自分以外のユーザーを取得
+      private users:object[] = [];
+      private wait:boolean = true;
       public created(){
-          console.log(process.env.VUE_APP_BACK_ORIGIN);
           fetch(`${process.env.VUE_APP_BACK_ORIGIN}/api/users`, {
               mode: "cors",
               headers: {
@@ -54,8 +55,9 @@
               .catch(error => console.error('Error:', error))
               .then(response => {
                   if (response) {
-                      this.cards = response;
+                      this.users = response;
                   }
+                  this.wait = false;
               });
       }
     }

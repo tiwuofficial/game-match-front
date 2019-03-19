@@ -4,10 +4,17 @@
           grid-list-md
   >
     <h1>Login</h1>
-    <v-form>
+    <div class="text-xs-center" v-if="wait">
+      <v-progress-circular
+              :size="50"
+              color="success"
+              indeterminate
+      ></v-progress-circular>
+    </div>
+    <v-form v-if="!wait">
       <v-text-field
-        v-model="id"
-        label="ID"
+        v-model="userId"
+        label="User ID"
         type="text"
         required
       ></v-text-field>
@@ -17,9 +24,9 @@
         type="password"
         required
       ></v-text-field>
-      <v-btn @click="submit">Login</v-btn>
+      <v-btn @click="submit" outline block color="success">Login</v-btn>
+    <v-btn to="/register" outline block class="mt-4">Register</v-btn>
     </v-form>
-    <router-link to="/register">Register</router-link>
   </v-container>
 </template>
 
@@ -28,11 +35,13 @@
 
     @Component
     export default class Top extends Vue {
-      private id: string = '';
+      private userId: string = '';
       private password: string = '';
+      private wait:boolean = false;
       private submit() {
+          this.wait = true;
         const formData = new FormData();
-        formData.append('id', this.id);
+        formData.append('user_id', this.userId);
         formData.append('password', this.password);
         fetch(`${process.env.VUE_APP_BACK_ORIGIN}/api/login`, {
             method: "POST",

@@ -5,6 +5,9 @@ import Top from './views/Top.vue';
 import Register from './views/Register.vue';
 import Friends from './views/Friends.vue';
 import Notifications from './views/Notifications.vue';
+import Settings from './views/Settings.vue';
+import Me from './views/Me.vue';
+import Edit from './views/Edit.vue';
 import User from './views/User.vue';
 
 Vue.use(Router);
@@ -38,6 +41,21 @@ export default new Router({
         name: 'notifications',
         component: Notifications,
     },
+      {
+          path: '/settings',
+          name: 'settings',
+          component: Settings,
+      },
+      {
+          path: '/me',
+          name: 'me',
+          component: Me,
+      },
+      {
+          path: '/edit',
+          name: 'edit',
+          component: Edit,
+      },
       {
           path: '/user/:id',
           name: 'user',

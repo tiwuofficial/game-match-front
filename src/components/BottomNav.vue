@@ -34,6 +34,16 @@
       <span>Notifications</span>
       <v-icon>notifications</v-icon>
     </v-btn>
+
+    <v-btn
+            color="teal"
+            flat
+            value="settings"
+            to="/settings"
+    >
+      <span>Settings</span>
+      <v-icon>settings</v-icon>
+    </v-btn>
   </v-bottom-nav>
 </template>
 
