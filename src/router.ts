@@ -61,5 +61,10 @@ export default new Router({
           name: 'user',
           component: User,
       },
+      {
+          path: '*',
+          name: 'top',
+          component: Top,
+      },
   ],
 });
